@@ -1,0 +1,26 @@
+{
+  "definition": {
+    "data": [
+      {
+        "data": [
+          {
+            "type": "Number"
+          }
+        ],
+        "name": "B"
+      },
+      {
+        "data": [
+          {
+            "type": "Number"
+          }
+        ],
+        "name": "C"
+      }
+    ],
+    "name": "or"
+  },
+  "type": {
+    "type": "A"
+  }
+}

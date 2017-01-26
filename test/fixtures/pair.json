@@ -1,0 +1,16 @@
+{
+  "definition": {
+    "data": [
+      {
+        "type": "A"
+      },
+      {
+        "type": "A"
+      }
+    ],
+    "name": "Pair"
+  },
+  "type": {
+    "type": "PairType"
+  }
+}
