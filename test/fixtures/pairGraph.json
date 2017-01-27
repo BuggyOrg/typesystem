@@ -1,0 +1,43 @@
+{
+  "nodes": [],
+  "metaInformation": {
+    "version": "0.4.0-pre.17"
+  },
+  "edges": [],
+  "components": [
+    {
+      "componentId": "StringPair",
+      "metaInformation": {
+        "type": {
+          "type": {
+            "type": "StringPair"
+          },
+          "definition": {
+            "name": "SPair",
+            "data": [
+              {
+                "type": "String"
+              },
+              {
+                "type": "String"
+              }
+            ]
+          }
+        }
+      },
+      "version": "0.0.0",
+      "ports": [
+        {
+          "port": "constructor",
+          "kind": "output",
+          "type": "StringPair"
+        }
+      ],
+      "type": true
+    }
+  ],
+  "path": [],
+  "ports": [],
+  "atomic": false,
+  "id": "#ciyfxytzu0000rylusc7xeqsw"
+}

@@ -1,5 +1,6 @@
 
 import flatten from 'lodash/fp/flatten'
+import * as DS from './datastructure'
 
 function defConstructors (tDef) {
   if (tDef.name === 'or') {
@@ -38,6 +39,10 @@ export function components (type) {
       .concat([{port: 'output', kind: 'output', type: type}]),
     version: '0.0.0',
     atomic: true,
-    type: true
+    type: true,
+    metaInformation: {
+      constructor: true,
+      datastructure: DS.createDatastructure(c)
+    }
   }))
 }

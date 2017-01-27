@@ -2,10 +2,10 @@
   "definition": {
     "data": [
       {
-        "type": "A"
+        "type": "a"
       },
       {
-        "type": "A"
+        "type": "a"
       }
     ],
     "name": "Pair"
