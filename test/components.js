@@ -22,14 +22,19 @@ describe('Creating Components from Types', () => {
     expect(consts.map(Comp.name)).to.include('C')
   })
 
-  it('Creates components for type constructors', () => {
+  it('Creates constructor components for type constructors', () => {
     var pairC = Comp.components(pair)
-    expect(pairC).to.have.length(1)
-    expect(pairC[0].componentId).to.equal('Pair')
-    expect(pairC[0].ports).to.have.length(3)
-    expect(pairC[0].ports.map((p) => p.port)).to.include('0')
-    expect(pairC[0].ports.map((p) => p.port)).to.include('1')
-    expect(pairC[0].ports[2].kind).to.include('output')
-    expect(pairC[0].ports[2].type).to.be.an('object')
+    var pairCmp = pairC.find((e) => e.componentId === 'Pair')
+    expect(pairCmp, 'Pair constructor is part of the components.').to.be.ok
+    expect(pairCmp.ports, 'Pair constructor has a total of 3 ports.').to.have.length(3)
+    expect(pairCmp.ports.map((p) => p.port)).to.include('0')
+    expect(pairCmp.ports.map((p) => p.port)).to.include('1')
+    expect(pairCmp.ports[2].kind).to.include('output')
+    expect(pairCmp.ports[2].type).to.be.an('object')
+  })
+
+  it('Creates destructor components for type constructors', () => {
+    var pairC = Comp.components(pair)
+    expect(pairC).to.have.length(3)
   })
 })

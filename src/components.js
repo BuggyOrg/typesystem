@@ -41,8 +41,21 @@ export function components (type) {
     atomic: true,
     type: true,
     metaInformation: {
-      constructor: true,
+      isConstructor: true,
       datastructure: DS.createDatastructure(c)
     }
   }))
+  .concat(flatten(constructors(type).map((c) =>
+    parameters(c).map((i) => ({
+      componentId: 'de-' + name(c) + '-' + i.name,
+      ports: [{port: 'in', kind: 'input', type: name(c)}, {port: 'out', kind: 'output', type: i.type}],
+      version: '0.0.0',
+      atomic: true,
+      type: true,
+      metaInformation: {
+        isDestructor: true,
+        parameter: i.name,
+        datastructure: DS.createDatastructure(c)
+      }
+    })))))
 }

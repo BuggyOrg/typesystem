@@ -1,6 +1,6 @@
 
-function createStructure (tDef) {
-  if (typeof (tDef.type) === 'string') return {type: 'basic', name: tDef.type}
+function createStructure (tDef, idx) {
+  if (typeof (tDef.type) === 'string') return {kind: 'basic', type: tDef.type, name: 'arg' + idx}
   return {
     type: 'struct',
     contents: tDef.map(createStructure)
