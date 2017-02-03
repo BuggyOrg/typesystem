@@ -36,7 +36,7 @@ export function components (type) {
   return constructors(type).map((c) => ({
     componentId: name(c),
     ports: parameters(c).map((p) => ({port: p.name, kind: 'input', type: p.type}))
-      .concat([{port: 'output', kind: 'output', type: type}]),
+      .concat([{port: 'output', kind: 'output', type: name(c)}]),
     version: '0.0.0',
     atomic: true,
     type: true,
