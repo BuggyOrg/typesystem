@@ -4,7 +4,7 @@
   "description": "A type system for buggy.",
   "main": "lib/api.js",
   "bin": {
-    "bres": "lib/cli.js"
+    "typesystem": "lib/cli.js"
   },
   "directories": {
     "test": "test"
