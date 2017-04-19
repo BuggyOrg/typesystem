@@ -5,8 +5,10 @@ import * as DS from './datastructure'
 function defConstructors (tDef) {
   if (tDef.name === 'or') {
     return flatten(tDef.data.map(defConstructors))
-  } else {
-    return [{ name: tDef.name, params: tDef.data }]
+  } else if (Array.isArray(tDef.data)) {
+    return [{ name: tDef.name, params: tDef.data }].concat(flatten(tDef.data.map(defConstructors)))
+  } else if (tDef.type) {
+    return []
   }
 }
 

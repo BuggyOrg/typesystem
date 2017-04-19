@@ -6,8 +6,8 @@ import * as Comp from '../src/components'
 var expect = chai.expect
 
 const pair = require('./fixtures/pair.json')
-
 const join = require('./fixtures/or.json')
+const innerOr = require('./fixtures/innerOr.json')
 
 
 describe('Creating Components from Types', () => {
@@ -36,5 +36,13 @@ describe('Creating Components from Types', () => {
   it('Creates destructor components for type constructors', () => {
     var pairC = Comp.components(pair)
     expect(pairC).to.have.length(3)
+  })
+
+  it('Can handle inner or types', () => {
+    var innerOrC = Comp.constructors(innerOr)
+    expect(innerOrC).to.have.length(3)
+    expect(innerOrC.map((i) => i.name)).to.contain('B')
+    expect(innerOrC.map((i) => i.name)).to.contain('C')
+    expect(innerOrC.map((i) => i.name)).to.contain('D')
   })
 })
