@@ -30,7 +30,7 @@ describe('Creating Components from Types', () => {
     expect(pairCmp.ports.map((p) => p.port)).to.include('0')
     expect(pairCmp.ports.map((p) => p.port)).to.include('1')
     expect(pairCmp.ports[2].kind).to.include('output')
-    expect(pairCmp.ports[2].type).to.be.an('object')
+    expect(pairCmp.ports[2].type).to.be.a('string')
   })
 
   it('Creates destructor components for type constructors', () => {
