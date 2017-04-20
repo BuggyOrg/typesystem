@@ -8,6 +8,7 @@ var expect = chai.expect
 const pair = require('./fixtures/pair.json')
 const join = require('./fixtures/or.json')
 const innerOr = require('./fixtures/innerOr.json')
+const innerOr2 = require('./fixtures/innerOr2.json')
 
 
 describe('Creating Components from Types', () => {
@@ -38,11 +39,22 @@ describe('Creating Components from Types', () => {
     expect(pairC).to.have.length(3)
   })
 
-  it('Can handle inner or types', () => {
+  it('Can create constructors for inner or-types', () => {
     var innerOrC = Comp.constructors(innerOr)
     expect(innerOrC).to.have.length(3)
     expect(innerOrC.map((i) => i.name)).to.contain('B')
     expect(innerOrC.map((i) => i.name)).to.contain('C')
     expect(innerOrC.map((i) => i.name)).to.contain('D')
+
+    var innerOr2C = Comp.constructors(innerOr2)
+    expect(innerOr2C).to.have.length(3)
+    expect(innerOr2C.map((i) => i.name)).to.contain('B')
+    expect(innerOr2C.map((i) => i.name)).to.contain('C')
+    expect(innerOr2C.map((i) => i.name)).to.contain('Cons')
+  })
+
+  it('Can create components for inner or-types', () => {
+    var innerOrC = Comp.components(innerOr)
+    expect(innerOrC).to.have.length(3)
   })
 })

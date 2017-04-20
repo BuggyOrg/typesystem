@@ -1,0 +1,37 @@
+{
+  "type": {
+    "type": "List"
+  },
+  "definition": {
+    "name": "Cons",
+    "data": [
+      {
+        "type": "Number"
+      },
+      {
+        "name": "or",
+        "data": [
+          {
+            "name": "B",
+            "data": [
+              {
+                "type": "Number"
+              }
+            ]
+          },
+          {
+            "name": "C",
+            "data": [
+              {
+                "type": "String"
+              },
+              {
+                "type": "List"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
