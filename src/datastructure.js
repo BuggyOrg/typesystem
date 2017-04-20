@@ -1,11 +1,10 @@
 
 function createStructure (tDef, idx) {
-  console.log(tDef)
   if (typeof (tDef.type) === 'string') return {kind: 'basic', type: tDef.type, name: 'arg' + idx}
   if (tDef.name === 'or') {
     return {
-      type: 'struct',
-      contents: tDef.data.map(createStructure)
+      type: 'orStruct',
+      contents: tDef.data
     }
   }
   return {

@@ -55,6 +55,8 @@ describe('Creating Components from Types', () => {
 
   it('Can create components for inner or-types', () => {
     var innerOrC = Comp.components(innerOr)
-    expect(innerOrC).to.have.length(3)
+    expect(innerOrC).to.have.length(8)
+    expect(innerOrC.map((c) => c.componentId)).to.contain('de-B-0')
+    expect(innerOrC.map((c) => c.componentId)).to.contain('de-B-1')
   })
 })
