@@ -50,7 +50,7 @@ export function components (type) {
   .concat(flatten(constructors(type).map((c) =>
     parameters(c).map((i, idx) => ({
       componentId: 'de-' + name(c) + '-' + idx,
-      ports: [{port: 'in', kind: 'input', type: name(c)}, {port: 'out', kind: 'output', type: i.type}],
+      ports: [{port: 'in', kind: 'input', type: type.type.type}, {port: 'out', kind: 'output', type: i.type}],
       version: '0.0.0',
       atomic: true,
       type: true,
