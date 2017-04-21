@@ -32,3 +32,5 @@ export function createTypes (graph) {
     Graph.addComponent(isType())
   )(graph)
 }
+
+export {components}

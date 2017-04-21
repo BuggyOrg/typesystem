@@ -2,6 +2,9 @@
 
 import chai from 'chai'
 import * as Comp from '../src/components'
+import * as Graph from '@buggyorg/graphtools'
+
+const Node = Graph.Node
 
 var expect = chai.expect
 
@@ -37,6 +40,8 @@ describe('Creating Components from Types', () => {
   it('Creates destructor components for type constructors', () => {
     var pairC = Comp.components(pair)
     expect(pairC).to.have.length(3)
+    const con = pairC.filter((c) => c.componentId.indexOf('de-') !== 0)
+    expect(con.every((c) => Node.outputPorts(c).every((p) => p.type === 'PairType'))).to.be.true
   })
 
   it('Can create constructors for inner or-types', () => {
