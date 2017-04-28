@@ -2,6 +2,7 @@
 import * as Graph from '@buggyorg/graphtools'
 import flatten from 'lodash/fp/flatten'
 import {components} from './components'
+import {createArrayComponents} from './array'
 
 const isType = () => ({
   componentId: 'isType',
@@ -30,7 +31,8 @@ export function createTypes (graph) {
   const types = Graph.components(graph).filter((c) => c.type)
   return Graph.flow(
     flatten(types.map((t) => components(t.metaInformation.type).map((c) => Graph.addComponent(c)))),
-    Graph.addComponent(isType())
+    Graph.addComponent(isType()),
+    createArrayComponents
   )(graph)
 }
 
