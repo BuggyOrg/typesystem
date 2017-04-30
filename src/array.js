@@ -37,6 +37,7 @@ export function renameArrays (graph) {
   }, graph)
 }
 
+/*
 function arrayType (len) {
   return {
     type: {
@@ -49,12 +50,20 @@ function arrayType (len) {
     }
   }
 }
+*/
+
+function arrayDataType () {
+  return {
+    name: 'Array',
+    data: ['a']
+  }
+}
 
 function inputs (len) {
   return fill(Array(len), 0).map((_, idx) => ({
     port: 'input' + idx,
     kind: 'input',
-    type: arrayType(len)
+    type: 'a'
   }))
 }
 
@@ -66,7 +75,7 @@ export function components (graph) {
       return {
         componentId: 'Array' + len,
         version: '1.0.0',
-        ports: inputs(len).concat({port: 'output', kind: 'output', type: arrayType(len)}),
+        ports: inputs(len).concat({port: 'output', kind: 'output', type: arrayDataType(len)}),
         atomic: true,
         type: true,
         metaInformation: {
