@@ -31,7 +31,7 @@ export function name (typeFn) {
 }
 
 function parameters (typeFn) {
-  return typeFn.params.map((p, idx) => ({ name: (p.name || '' + idx), type: p.type }))
+  return typeFn.params.map((p, idx) => ({ name: 'p_' + (p.name || '' + idx), type: p.type }))
 }
 
 export function components (type) {

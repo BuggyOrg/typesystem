@@ -1,6 +1,6 @@
 
 function createStructure (tDef, idx) {
-  if (typeof (tDef.type) === 'string') return {kind: 'basic', type: tDef.type, name: 'arg' + idx}
+  if (typeof (tDef.type) === 'string') return {kind: 'basic', type: tDef.type, name: 'argp_' + idx}
   if (tDef.name === 'or') {
     return {
       type: 'orStruct',
