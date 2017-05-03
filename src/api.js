@@ -28,10 +28,10 @@ const isType = () => ({
 })
 
 export function createTypes (graph) {
-  const types = Graph.components(graph).filter((c) => c.type)
+  const types = Graph.components(graph).filter((c) => c.type && !c.metaInformation.isConstructor && !c.metaInformation.isDestructor)
   return Graph.flow(
-    flatten(types.map((t) => components(t.metaInformation.type).map((c) => Graph.addComponent(c)))),
-    Graph.addComponent(isType()),
+    flatten(types.map((t) => components(t.metaInformation.type).map((c) => (Graph.hasComponent(c, graph)) ? (g) => g : Graph.addComponent(c)))),
+    (Graph.hasComponent(isType(), graph) ? (g) => g : Graph.addComponent(isType())),
     createArrayComponents
   )(graph)
 }

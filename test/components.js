@@ -31,8 +31,8 @@ describe('Creating Components from Types', () => {
     var pairCmp = pairC.find((e) => e.componentId === 'Pair')
     expect(pairCmp, 'Pair constructor is part of the components.').to.be.ok
     expect(pairCmp.ports, 'Pair constructor has a total of 3 ports.').to.have.length(3)
-    expect(pairCmp.ports.map((p) => p.port)).to.include('0')
-    expect(pairCmp.ports.map((p) => p.port)).to.include('1')
+    expect(pairCmp.ports.map((p) => p.port)).to.include('p_0')
+    expect(pairCmp.ports.map((p) => p.port)).to.include('p_1')
     expect(pairCmp.ports[2].kind).to.include('output')
     expect(pairCmp.ports[2].type).to.be.a('string')
   })
