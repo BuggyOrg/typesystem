@@ -19,6 +19,12 @@ describe('Arrays', () => {
       expect(arrays).to.have.length(1)
       expect(arrays.every((a) => a.node.ref === 'Array')).to.be.true
     })
+
+    it('Lists all array constructors from nodes', () => {
+      const g = Graph.addNode({ref: 'Array', metaInformation: { length: 0 }}, Graph.empty())
+      const arrays = Arrays.listArrays(g)
+      expect(arrays).to.have.length(1)
+    })
   })
 
   describe('.renameArrays', () => {
@@ -38,6 +44,12 @@ describe('Arrays', () => {
       expect(arrComps).to.have.length(1)
       expect(arrComps[0].componentId).to.equal('Array3')
     })
+
+    it('can create array components from nodes', () => {
+      const g = Graph.addNode({ref: 'Array', metaInformation: { length: 0 }}, Graph.empty())
+      const comps = Arrays.components(g)
+      expect(comps).to.have.length(1)
+    })
   })
 
   describe('.createArrayComponents', () => {
@@ -45,6 +57,13 @@ describe('Arrays', () => {
       const newGraph = Arrays.createArrayComponents(array)
       expect(Graph.components(array)).to.have.length(1)
       expect(Graph.components(newGraph)).to.have.length(2)
+    })
+
+    it('can add array components from nodes', () => {
+      const g = Graph.addNode({ref: 'Array', metaInformation: { length: 0 }}, Graph.empty())
+      const newGraph = Arrays.createArrayComponents(g)
+      expect(Graph.components(newGraph)).to.have.length(1)
+      expect(Graph.components(newGraph)[0].componentId).to.equal('Array0')
     })
   })
 })
