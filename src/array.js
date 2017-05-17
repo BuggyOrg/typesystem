@@ -6,9 +6,14 @@ function arrayComponents (comp) {
   if (comp.nodes) {
     return comp.nodes
       .map((n, idx) => [idx, n])
-      .filter(([idx, n]) => n.ref.indexOf('Array') === 0)
+      .filter(([idx, n]) => n.ref && n.ref.indexOf('Array') === 0)
   }
   return []
+}
+
+function arrayNodes (graph) {
+  return Graph.nodesDeep(graph)
+    .filter((n) => n.ref && n.ref.indexOf('Array') === 0)
 }
 
 /**
@@ -16,11 +21,12 @@ function arrayComponents (comp) {
  * @param {Portgraph} graph The graph
  */
 export function listArrays (graph) {
-  const comps = Graph.components(graph).concat(graph)
+  const comps = Graph.components(graph)
   return comps.reduce((list, c) =>
     list.concat(arrayComponents(c)
-      .map((a) => ({path: [c.componentId || c.path, a[0]], node: a[1]}))),
-    [])
+      .map((a) => ({path: [c.componentId, a[0]], node: a[1]}))),
+    []).concat(arrayNodes(graph)
+      .map((n) => ({path: [n.path, n.id], node: n})))
 }
 
 export function renameArrays (graph) {
@@ -28,8 +34,8 @@ export function renameArrays (graph) {
   return arrays.reduce((curGraph, arrObj) => {
     const [cId, nIdx] = arrObj.path
     if (Array.isArray(cId)) {
-      const n = Graph.node(cId, curGraph).nodes[nIdx]
-      Graph.node(cId, curGraph).nodes[nIdx].ref = 'Array' + n.metaInformation.length
+      var n = Graph.node(cId, curGraph)
+      n.ref = 'Array' + n.metaInformation.length
       return curGraph
     }
     const comp = Graph.component(cId, curGraph)
