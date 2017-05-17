@@ -59,10 +59,11 @@ describe('Arrays', () => {
       expect(Graph.components(newGraph)).to.have.length(2)
     })
 
-    it('can add array components from nodes', () => {
+    it.only('can add array components from nodes', () => {
       const g = Graph.addNode({ref: 'Array', metaInformation: { length: 0 }}, Graph.empty())
       const newGraph = Arrays.createArrayComponents(g)
       expect(Graph.components(newGraph)).to.have.length(1)
+      expect(Graph.hasNode('/Array0', newGraph)).to.be.true
       expect(Graph.components(newGraph)[0].componentId).to.equal('Array0')
     })
   })

@@ -19,7 +19,7 @@ export function listArrays (graph) {
   const comps = Graph.components(graph).concat(graph)
   return comps.reduce((list, c) =>
     list.concat(arrayComponents(c)
-      .map((a) => ({path: [c.componentId, a[0]], node: a[1]}))),
+      .map((a) => ({path: [c.componentId || c.path, a[0]], node: a[1]}))),
     [])
 }
 
@@ -27,7 +27,11 @@ export function renameArrays (graph) {
   const arrays = listArrays(graph)
   return arrays.reduce((curGraph, arrObj) => {
     const [cId, nIdx] = arrObj.path
-    if (!cId) return curGraph
+    if (Array.isArray(cId)) {
+      const n = Graph.node(cId, curGraph).nodes[nIdx]
+      Graph.node(cId, curGraph).nodes[nIdx].ref = 'Array' + n.metaInformation.length
+      return curGraph
+    }
     const comp = Graph.component(cId, curGraph)
     const newNodes = comp.nodes.map((n, idx) => {
       if (idx === nIdx) {
